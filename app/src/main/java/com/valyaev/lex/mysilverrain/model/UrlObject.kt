@@ -1,9 +1,15 @@
 package com.valyaev.lex.mysilverrain.model
 
-class UrlObject(
+import android.graphics.drawable.Drawable
+
+
+
+open class UrlObject (
     val text: String,
-    val url: String
-) {
+    val url: String,
+    val icon: Drawable?
+)
+{
     override fun toString(): String {
         return "$text     $url \n"
     }

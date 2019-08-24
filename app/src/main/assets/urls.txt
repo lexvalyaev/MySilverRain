@@ -1,32 +1,31 @@
-Flammable Beats;http://www.silver.ru/programms/Flammable_Beats/editions-of-the-program/
-In-Beat-Ween Music Show;http://www.silver.ru/programms/in-beat-weenmusicshow/editions-of-the-program/
-Intelligent Beats;http://www.silver.ru/programms/intelligent_beats/vipyski-prigrammi/
-Mozcow Dizcow;http://www.silver.ru/programms/mozcow_dizcow_hi_fi_edition/vipyski-prigrammi/
-Soul kitchen;http://www.silver.ru/programms/Soul_kitchen/vipusky_programmy_soul_kitchen/
-Авторские новости от НСН;http://www.silver.ru/programms/avtorskienovosty/vipusky_avtorskie_novosti/
-Вечерний РБК;http://www.silver.ru/programms/VecherniyRBK/vipusky_programmi_vecherniy_rbk/
-Взрослым о взрослых;http://www.silver.ru/programms/vzroslim-o-vzroslix/Vipuskyprogrammy/
-Добрый день;http://www.silver.ru/programms/Dobri_den/vipusky_programmy_dobriy_den/
-Есть или не есть?;http://www.silver.ru/programms/Est_ili_ne_est/editions-of-the-program/
-История в лицах;http://www.silver.ru/programms/istoria_v_litsax/editions-of-the-program/
-Йога для мозгов;http://www.silver.ru/programms/yoga_dlya_mozgov/Vypuskiprogrammy/
-Кино и музыка;http://www.silver.ru/programms/Kino_i_myzika/vipuski_programmy_kino_i_muzika/
-Мужские игры;http://www.silver.ru/programms/myzhskie_igry/vipuski_programmy_mujskie_igry/
-Музыкальный секонд-хэнд;http://www.silver.ru/programms/muzykalnyy_sekond_khend/editions-of-the-program/
-Мужские игры;http://www.silver.ru/programms/myzhskie_igry/vipuski_programmy_mujskie_igry/
-На час раньше;http://www.silver.ru/programms/NachasranshesTitovoy/vipuski_programmy_na_chas_ranshe/
-Окей, Лисовец;http://www.silver.ru/programms/Okey_Lisotets/vipuski_programmy_ok_lisovec/
-От автора;http://www.silver.ru/programms/ot_avtora/vipusky_programmy_ot_avtora/
-Пиратское радио;http://www.silver.ru/programms/pir_radio/+editions-of-the-program/
-Потапенко будит!;http://www.silver.ru/programms/Potapenko_budit/vipuski_programmy_potapenko_budit/
-Прямой эфир;http://www.silver.ru/programms/Pryamoy_efir/vipuski_programmy_pryamoy_efir/
-С приветом, Набутов!;http://www.silver.ru/programms/s_privetom_nabutov/vipyski-programmi/
-Тема дня за 60 секунд;http://www.silver.ru/programms/tema_dnya_za_60_sekund/editions-of-the-program/
-Тест-драйв онлайн;http://www.silver.ru/programms/test_drayv_onlayn/editions-of-the-program/
-Хождение по звукам;http://www.silver.ru/programms/khozhdenie_po_zvukam/vipyski-programmi/
-Что-то хорошее;http://www.silver.ru/programms/chto_to_khoroshee/editions-of-the-program/
-Электроспектива;http://www.silver.ru/programms/electrospectiva/vipuski-program/
-НИИ Джаза;http://www.silver.ru/programms/nii-jazza/vipyskiprogrammi/
-Радиоэкскурсий;http://www.silver.ru/programms/padioekskyrsii/Radioekskyrsii/
-Ямайские праздники;http://www.silver.ru/programms/yamayskieprazdniki/Yamaiskie_prazdniki/
-Вокруг света за 8 000 песен;http://www.silver.ru/programms/vokrug_sveta_za_8_000_pesen/editions-of-the-program/
+Flammable Beats;http://www.silver.ru/programms/Flammable_Beats/editions-of-the-program/;flammable_beats
+In-Beat-Ween Music Show;http://www.silver.ru/programms/in-beat-weenmusicshow/editions-of-the-program/;in_beat_ween_music_show
+Intelligent Beats;http://www.silver.ru/programms/intelligent_beats/vipyski-prigrammi/;intelligent_beats
+Mozcow Dizcow;http://www.silver.ru/programms/mozcow_dizcow_hi_fi_edition/vipyski-prigrammi/;mozcow_dizcow_hi_fi_edition
+Soul kitchen;http://www.silver.ru/programms/Soul_kitchen/vipusky_programmy_soul_kitchen/;soul_kitchen
+Авторские новости от НСН;http://www.silver.ru/programms/avtorskienovosty/vipusky_avtorskie_novosti/;autorskie_novosti_nsn
+Вечерний РБК;http://www.silver.ru/programms/VecherniyRBK/vipusky_programmi_vecherniy_rbk/;vechernii_rbk
+Взрослым о взрослых;http://www.silver.ru/programms/vzroslim-o-vzroslix/Vipuskyprogrammy/;vzroslym_o_vzroslyh
+Добрый день;http://www.silver.ru/programms/Dobri_den/vipusky_programmy_dobriy_den/;dobrii_den
+Есть или не есть?;http://www.silver.ru/programms/Est_ili_ne_est/editions-of-the-program/;est_ili_ne_est
+История в лицах;http://www.silver.ru/programms/istoria_v_litsax/editions-of-the-program/;istoria_v_litsah
+Йога для мозгов;http://www.silver.ru/programms/yoga_dlya_mozgov/Vypuskiprogrammy/;yoga_dlya_mozgov
+Кино и музыка;http://www.silver.ru/programms/Kino_i_myzika/vipuski_programmy_kino_i_muzika/;kino_i_muzyka
+Мужские игры;http://www.silver.ru/programms/myzhskie_igry/vipuski_programmy_mujskie_igry/;muzhskie_igry
+Музыкальный секонд-хэнд;http://www.silver.ru/programms/muzykalnyy_sekond_khend/editions-of-the-program/;muzykalnii_second_hand
+На час раньше;http://www.silver.ru/programms/NachasranshesTitovoy/vipuski_programmy_na_chas_ranshe/;na_chas_ranchshe
+Окей, Лисовец;http://www.silver.ru/programms/Okey_Lisotets/vipuski_programmy_ok_lisovec/;okey_lisovets
+От автора;http://www.silver.ru/programms/ot_avtora/vipusky_programmy_ot_avtora/;ot_avtora
+Пиратское радио;http://www.silver.ru/programms/pir_radio/+editions-of-the-program/;piratskoe_radio
+Потапенко будит!;http://www.silver.ru/programms/Potapenko_budit/vipuski_programmy_potapenko_budit/;potapenko_budit
+Прямой эфир;http://www.silver.ru/programms/Pryamoy_efir/vipuski_programmy_pryamoy_efir/;priamoy_efir
+С приветом, Набутов!;http://www.silver.ru/programms/s_privetom_nabutov/vipyski-programmi/;s_privetom_nabutov
+Тема дня за 60 секунд;http://www.silver.ru/programms/tema_dnya_za_60_sekund/editions-of-the-program/;tema_dnya_za_60_sekund
+Тест-драйв онлайн;http://www.silver.ru/programms/test_drayv_onlayn/editions-of-the-program/;test_drive
+Хождение по звукам;http://www.silver.ru/programms/khozhdenie_po_zvukam/vipyski-programmi/;hozhdenie_po_zvikam
+Что-то хорошее;http://www.silver.ru/programms/chto_to_khoroshee/editions-of-the-program/;chto_to_horoshee
+Электроспектива;http://www.silver.ru/programms/electrospectiva/vipuski-program/;elektroperspektiva
+НИИ Джаза;http://www.silver.ru/programms/nii-jazza/vipyskiprogrammi/;nii_dzhaza
+Радиоэкскурсий;http://www.silver.ru/programms/padioekskyrsii/Radioekskyrsii/;radioekskursii
+Ямайские праздники;http://www.silver.ru/programms/yamayskieprazdniki/Yamaiskie_prazdniki/;yamayskie_prazdniki
+Вокруг света за 8 000 песен;http://www.silver.ru/programms/vokrug_sveta_za_8_000_pesen/editions-of-the-program/;vokrug_sveta_za_8000_pesen
