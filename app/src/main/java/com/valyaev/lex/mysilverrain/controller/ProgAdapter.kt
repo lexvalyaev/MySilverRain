@@ -13,6 +13,12 @@ class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>): Recy
 
     override fun getItemCount()=listProgUrlObject.size
 
+    fun setItems(items:ArrayList<ProgUrlObject>)
+    {
+        listProgUrlObject.addAll(items)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.prog_rview,parent, false)
         return ViewHolder(itemView)

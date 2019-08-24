@@ -18,6 +18,7 @@ class ProgrammActivity : AppCompatActivity() {
     val EXTRA_URL= "URL"
     val EXTRA_NAME= "NAME"
     val programmsList = arrayListOf<ProgUrlObject>()
+    val progAdapter = ProgAdapter(programmsList)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,20 +28,28 @@ class ProgrammActivity : AppCompatActivity() {
         val urlProgramm = intentMain.extras.getString(EXTRA_URL)
         val nameProgramm = intentMain.getStringExtra(EXTRA_NAME)
 
+        val recyclerView : RecyclerView = findViewById(R.id.prog_recycle)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter=progAdapter
+
         doAsync{
             getProgList(urlProgramm,programmsList)
         }.execute()
 
 
-        val recyclerView : RecyclerView = findViewById(R.id.prog_recycle)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter=ProgAdapter(programmsList)
+
     }
 
-    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
+    inner class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
         override fun doInBackground(vararg params: Void?): Void? {
             handler()
             return null
+        }
+
+        override fun onPostExecute(result: Void?) {
+            super.onPostExecute(result)
+            progAdapter.setItems(programmsList)
         }
     }
 
