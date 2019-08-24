@@ -31,11 +31,10 @@ class ProgrammActivity : AppCompatActivity() {
             getProgList(urlProgramm,programmsList)
         }.execute()
 
+
         val recyclerView : RecyclerView = findViewById(R.id.prog_recycle)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter=ProgAdapter(programmsList)
-
-
     }
 
     class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
@@ -45,7 +44,7 @@ class ProgrammActivity : AppCompatActivity() {
         }
     }
 
-
+    //формируем список выпусков выбранной программы в programmsList
     fun getProgList(url:String, pList:ArrayList<ProgUrlObject>) {
         val defIcon = ContextCompat.getDrawable(this@ProgrammActivity, R.drawable.ic_default)
         var hasNextPage: Boolean
