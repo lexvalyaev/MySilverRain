@@ -27,16 +27,16 @@ class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>): Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView?.text = listProgUrlObject[position].text
-        holder.textView2?.text = listProgUrlObject[position].url
+        holder.imgView?.setImageDrawable(listProgUrlObject[position].icon)
     }
 
    inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
        var textView: TextView? = null
-       var textView2: TextView? = null
+       var imgView: ImageView? = null
 
        init {
             textView=itemView.findViewById(R.id.textView)
-            textView2=itemView.findViewById(R.id.textView2)
+            imgView = itemView.findViewById(R.id.imageView2)
 
        }
     }

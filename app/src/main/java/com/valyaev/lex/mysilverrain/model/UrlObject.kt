@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 open class UrlObject (
     val text: String,
     val url: String,
+    val iconID :Int,
     val icon: Drawable?
 )
 {

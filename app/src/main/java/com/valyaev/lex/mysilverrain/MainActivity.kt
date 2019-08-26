@@ -20,6 +20,7 @@ import java.io.InputStreamReader
 class MainActivity : AppCompatActivity() {
     val EXTRA_URL= "URL"
     val EXTRA_NAME= "NAME"
+    val EXTRA_ICON= "ICON"
     val baseUrlObjectArray = arrayListOf<UrlObject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 val imgID = resources.getIdentifier(strings[2],"drawable",applicationContext.packageName)
                 val image = ContextCompat.getDrawable(this,imgID)
 
-                baseUrlObjectArray.add(UrlObject(strings[0],strings[1],image))
+                baseUrlObjectArray.add(UrlObject(strings[0],strings[1],imgID,image))
             }
             else break
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(urlObject: UrlObject) {
                     //Toast.makeText(applicationContext , urlObject.url,Toast.LENGTH_LONG).show()
                     val intentProgActivity = Intent(this@MainActivity,ProgrammActivity::class.java)
-                intentProgActivity.putExtra(EXTRA_URL,urlObject.url).putExtra(EXTRA_NAME,urlObject.text)
+                intentProgActivity.putExtra(EXTRA_URL,urlObject.url).putExtra(EXTRA_NAME,urlObject.text).putExtra(EXTRA_ICON,urlObject.iconID)
                 startActivity(intentProgActivity)
             }
         }
