@@ -1,5 +1,6 @@
 package com.valyaev.lex.mysilverrain.controller
 
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,8 @@ class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>): Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView?.text = listProgUrlObject[position].text
-        holder.imgView?.setImageDrawable(listProgUrlObject[position].icon)
+        val image = holder.imgView?.context?.let  { ContextCompat.getDrawable(it, listProgUrlObject[position].imgID) }
+
     }
 
    inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){

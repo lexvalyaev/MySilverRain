@@ -1,5 +1,7 @@
 package com.valyaev.lex.mysilverrain.controller
 
+import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -27,9 +29,9 @@ class Adapter(private val values: List<UrlObject>, private val onClickListener: 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView?.text = values[position].text
-        holder.imgView?.setImageDrawable(values[position].icon)
-
-    }
+        val image = holder.imgView?.context?.let { ContextCompat.getDrawable(it, values[position].iconID) }
+        holder.imgView?.setImageDrawable(image)
+       }
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

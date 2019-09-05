@@ -11,7 +11,9 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import com.facebook.stetho.Stetho
 import com.valyaev.lex.mysilverrain.controller.Adapter
+import com.valyaev.lex.mysilverrain.helper.DbHelper
 import com.valyaev.lex.mysilverrain.model.UrlObject
 import kotlinx.android.synthetic.main.first_recycle_view.view.*
 import java.io.BufferedReader
@@ -26,9 +28,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Stetho.initializeWithDefaults(getApplicationContext())
         val assetInputStream = assets.open("urls.txt")
         val br = BufferedReader(InputStreamReader(assetInputStream))
-
+        val dbHelper = DbHelper(applicationContext)
 
         while (true)
         {
@@ -38,12 +41,15 @@ class MainActivity : AppCompatActivity() {
                 val strings = word.split(";")
                 val imgID = resources.getIdentifier(strings[2],"drawable",applicationContext.packageName)
                 val image = ContextCompat.getDrawable(this,imgID)
-
-                baseUrlObjectArray.add(UrlObject(strings[0],strings[1],imgID,image))
+                val urlObject = UrlObject(strings[0],strings[1],imgID)
+                dbHelper.insert(urlObject)
+                baseUrlObjectArray.add(urlObject)
             }
             else break
 
         }
+
+
 
 
         val recyclerView :RecyclerView = findViewById(R.id.firstRecycle)

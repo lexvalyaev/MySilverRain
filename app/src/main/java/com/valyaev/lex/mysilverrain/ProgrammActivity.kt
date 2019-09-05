@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.valyaev.lex.mysilverrain.controller.ProgAdapter
+import com.valyaev.lex.mysilverrain.helper.DbHelper
 import com.valyaev.lex.mysilverrain.model.ProgUrlObject
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
@@ -23,13 +24,13 @@ class ProgrammActivity : AppCompatActivity() {
     val EXTRA_ICON= "ICON"
     val programmsList = arrayListOf<ProgUrlObject>()
     val progAdapter = ProgAdapter(programmsList)
-
+    var urlProgramm = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_programm)
         val intentMain = intent
-        val urlProgramm = intentMain.extras.getString(EXTRA_URL)
+        urlProgramm = intentMain.extras.getString(EXTRA_URL)
         val nameProgramm = intentMain.getStringExtra(EXTRA_NAME)
         val imgID = intentMain.extras.getInt(EXTRA_ICON)
 
@@ -92,19 +93,18 @@ class ProgrammActivity : AppCompatActivity() {
                     val mp3url = elementBlog.getElementsByTag("audio").attr("src")
                     val stringData = elementBlog.getElementsByTag("span").last().text()
                     val date = sdf.parse(stringData)
-
-
-
-                    pList.add(
-                        ProgUrlObject(
-                            text = e.text(),
-                            url = e.attr("href"),
-                            icon = defIcon,
-                            mp3 = mp3url,
-                            date = date,
-                            imgID = imgID
-                        )
+                    val progUrlObject = ProgUrlObject(
+                        text = e.text(),
+                        programs_url = urlProgramm,
+                        url = e.attr("href"),
+                        mp3 = mp3url,
+                        date = date,
+                        imgID = imgID
                     )
+
+                    val dbHelper = DbHelper(applicationContext)
+                    dbHelper.insert(progUrlObject)
+                    pList.add(progUrlObject)
                     count++
                     Log.d("GETURL", count.toString())
                     if(count >10) break

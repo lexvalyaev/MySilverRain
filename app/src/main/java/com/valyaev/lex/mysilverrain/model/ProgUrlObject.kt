@@ -3,7 +3,13 @@ package com.valyaev.lex.mysilverrain.model
 import android.graphics.drawable.Drawable
 import java.util.*
 
-class ProgUrlObject(text: String, url: String, imgID:Int, icon: Drawable?, mp3: String, date: Date) : UrlObject(text, url, imgID, icon) {
+class ProgUrlObject(val text: String,
+                    val programs_url:String,
+                    val url: String,
+                    val imgID:Int,
+                   // val icon: Drawable?,
+                    val mp3: String,
+                    val date: Date)  {
 
 
 }
