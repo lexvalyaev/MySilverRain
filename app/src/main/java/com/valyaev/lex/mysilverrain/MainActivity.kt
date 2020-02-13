@@ -40,17 +40,17 @@ class MainActivity : AppCompatActivity() {
             {
                 val strings = word.split(";")
                 val imgID = resources.getIdentifier(strings[2],"drawable",applicationContext.packageName)
-                val image = ContextCompat.getDrawable(this,imgID)
                 val urlObject = UrlObject(strings[0],strings[1],imgID)
                 dbHelper.insert(urlObject)
-                baseUrlObjectArray.add(urlObject)
+
             }
             else break
 
         }
 
 
-
+        baseUrlObjectArray.clear()
+        baseUrlObjectArray.addAll(dbHelper.getAllPrograms())
 
         val recyclerView :RecyclerView = findViewById(R.id.firstRecycle)
             recyclerView.layoutManager = LinearLayoutManager(this)

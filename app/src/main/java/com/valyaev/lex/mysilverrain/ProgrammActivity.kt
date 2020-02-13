@@ -58,7 +58,10 @@ class ProgrammActivity : AppCompatActivity() {
             super.onPostExecute(result)
             progAdapter.setItems(programmsList)
         }
+
+
     }
+
 
     //формируем список выпусков выбранной программы в programmsList
     fun getProgList(url:String, pList:ArrayList<ProgUrlObject>, imgID: Int) {

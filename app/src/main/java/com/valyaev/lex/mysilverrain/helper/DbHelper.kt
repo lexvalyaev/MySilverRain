@@ -21,19 +21,28 @@ class DbHelper(
     companion object RadioProgramsContract {
         const val SQL_CREATE_PROGRAM_TABLE =
             "CREATE TABLE ${ProgramEntry.TABLE_NAME} (" +
+
                     "${ProgramEntry.COLUMN_PROGRAMS_NAME} TEXT NOT NULL, " +
-                    "${ProgramEntry.COLUMN_PROGRAMS_URL} TEXT NOT NULL, " +
-                    "${ProgramEntry.COLUMN_ICON_ID} INTEGER NOT NULL )"
+                    "${ProgramEntry.COLUMN_PROGRAMS_URL} TEXT UNIQUE NOT NULL, " +
+                    "${ProgramEntry.COLUMN_ICON_ID} INTEGER NOT NULL, " +
+                    "${ProgramEntry.COLUMN_NEXT_LOAD_PAGE} TEXT )"
+
 
 
         const val SQL_CREATE_BROADCAST_TABLE =
             " CREATE TABLE ${BroadcastEntry.TABLE_NAME} (" +
+
                     "${BroadcastEntry.COLUMN_BROADCAST_NAME} TEXT NOT NULL, " +
-                    "${BroadcastEntry.COLUMN_BROADCAST_URL} TEXT NOT NULL, " +
+                    "${BroadcastEntry.COLUMN_BROADCAST_URL} TEXT UNIQUE NOT NULL, " +
                     "${BroadcastEntry.COLUMN_MP3_URL} TEXT NOT NULL, " +
                     "${BroadcastEntry.COLUMN_DATE} TEXT NOT NULL, " +
                     "${BroadcastEntry.COLUMN_PROGRAM_URL} TEXT NOT NULL," +
                     "${BroadcastEntry.COLUMN_ICON_ID} INTEGER NOT NULL )"
+
+        const val SQL_CREATE_MP3_STORAGE_TABLE =
+            " CREATE TABLE ${Mp3BaseEntry.TABLE_NAME} ("+
+                    "${Mp3BaseEntry.COLUMN_BROADCAST_URL}TEXT UNIQUE NOT NULL,"+
+                    "${Mp3BaseEntry.COLUMN_MP3}TEXT NOT NULL"
 
 
         object ProgramEntry : BaseColumns {
@@ -41,6 +50,7 @@ class DbHelper(
             const val COLUMN_PROGRAMS_NAME = "program_name"
             const val COLUMN_PROGRAMS_URL = "program_url"
             const val COLUMN_ICON_ID = "icon_id"
+            const val COLUMN_NEXT_LOAD_PAGE = "next_load_page"
         }
 
         object BroadcastEntry : BaseColumns {
@@ -52,6 +62,12 @@ class DbHelper(
             const val COLUMN_DATE = "date"
             const val COLUMN_ICON_ID = "icon_id"
         }
+
+        object Mp3BaseEntry:BaseColumns {
+            const val TABLE_NAME = "mp3"
+            const val COLUMN_BROADCAST_URL = "broadcast_url"
+            const val COLUMN_MP3 = "mp3_"
+        }
     }
 
 
@@ -59,6 +75,7 @@ class DbHelper(
         if (db != null) {
             db.execSQL(SQL_CREATE_PROGRAM_TABLE)
             db.execSQL(SQL_CREATE_BROADCAST_TABLE)
+            db.execSQL(SQL_CREATE_MP3_STORAGE_TABLE)
         }
 
     }
@@ -66,6 +83,8 @@ class DbHelper(
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
     }
+
+
 
     fun insert(urlObject: UrlObject) {
         val db = writableDatabase
@@ -89,6 +108,7 @@ class DbHelper(
             put(BroadcastEntry.COLUMN_MP3_URL, progUrlObject.mp3)
             put(BroadcastEntry.COLUMN_PROGRAM_URL, progUrlObject.programs_url)
             put(BroadcastEntry.COLUMN_ICON_ID, progUrlObject.imgID)
+
         }
         val newRowId = db?.insert(BroadcastEntry.TABLE_NAME, null, values)
     }
@@ -103,7 +123,7 @@ class DbHelper(
             while (cursor.moveToNext()) {
                 val progName =
                     cursor.getString(cursor.getColumnIndex(ProgramEntry.COLUMN_PROGRAMS_NAME))
-                val progUrl = cursor.getString(cursor.getColumnIndex(ProgramEntry.TABLE_NAME))
+                val progUrl = cursor.getString(cursor.getColumnIndex(ProgramEntry.COLUMN_PROGRAMS_URL))
                 val progIconId = cursor.getInt(cursor.getColumnIndex(ProgramEntry.COLUMN_ICON_ID))
                 result.add(UrlObject(text = progName, url = progUrl, iconID = progIconId))
             }
@@ -136,4 +156,36 @@ class DbHelper(
 
         return result
     }
+
+    fun setLastLoadPage(urlProgram:String, nextLoadPage:String)
+    {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put (ProgramEntry.COLUMN_NEXT_LOAD_PAGE,nextLoadPage )
+        }
+        val selection = ProgramEntry.COLUMN_PROGRAMS_URL +"=?"
+        val selectionArgs = arrayOf(urlProgram)
+        db.update(ProgramEntry.TABLE_NAME, values,selection,selectionArgs)
+
+    }
+
+    fun getLastLoadPage(urlProgram:String):String
+    {
+        val db = readableDatabase
+        val cursor = db.query(ProgramEntry.TABLE_NAME, null, null, null, null, null, null)
+
+        return ""
+    }
+
+    fun insertMp3InternalStorage (urlProgram: String, mp3Path:String)
+    {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put (Mp3BaseEntry.COLUMN_BROADCAST_URL, urlProgram)
+            put (Mp3BaseEntry.COLUMN_MP3,mp3Path)
+            }
+        val newRowId = db?.insert(Mp3BaseEntry.TABLE_NAME,null,values)
+    }
+
+
 }

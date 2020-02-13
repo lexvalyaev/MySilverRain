@@ -7,37 +7,36 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
 
+
     <ImageView
             android:id="@+id/imageView2"
             android:layout_width="60dp"
             android:layout_height="54dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_default" />
-
 
     <CheckBox
             android:id="@+id/checkBox"
             style="@style/Widget.AppCompat.CompoundButton.CheckBox"
             android:layout_width="32dp"
             android:layout_height="23dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginEnd="24dp"
+
             android:checked="false"
             app:layout_constraintBottom_toBottomOf="parent"
-
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.372" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="53dp"
-            android:layout_marginStart="8dp"
             android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/checkBox"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
