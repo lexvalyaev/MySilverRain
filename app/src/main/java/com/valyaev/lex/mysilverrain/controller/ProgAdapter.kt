@@ -1,7 +1,7 @@
 package com.valyaev.lex.mysilverrain.controller
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.valyaev.lex.mysilverrain.R
 import com.valyaev.lex.mysilverrain.model.ProgUrlObject
 
-class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>): RecyclerView.Adapter<ProgAdapter.ViewHolder>() {
+class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>, private val onClickListener: OnDownloadClickListener): androidx.recyclerview.widget.RecyclerView.Adapter<ProgAdapter.ViewHolder>() {
 
     override fun getItemCount()=listProgUrlObject.size
 
@@ -32,14 +32,20 @@ class ProgAdapter(private val listProgUrlObject: ArrayList<ProgUrlObject>): Recy
 
     }
 
-   inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+   inner class ViewHolder (itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
        var textView: TextView? = null
        var imgView: ImageView? = null
+       var downloadImg: ImageView? = null
 
        init {
             textView=itemView.findViewById(R.id.textView)
             imgView = itemView.findViewById(R.id.imageView2)
+            downloadImg = itemView.findViewById(R.id.downloadImage)
 
        }
+    }
+
+    interface OnDownloadClickListener {
+        fun onClick(progUrlObject:ProgUrlObject)
     }
 }

@@ -1,6 +1,6 @@
 package com.valyaev.lex.mysilverrain.controller
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 
 class MyDiffCallback: DiffUtil.Callback() {
     override fun areItemsTheSame(p0: Int, p1: Int): Boolean {

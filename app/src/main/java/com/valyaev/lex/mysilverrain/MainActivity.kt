@@ -2,27 +2,22 @@ package com.valyaev.lex.mysilverrain
 
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.Toast
+import androidx.room.Room
 import com.facebook.stetho.Stetho
 import com.valyaev.lex.mysilverrain.controller.Adapter
 import com.valyaev.lex.mysilverrain.helper.DbHelper
 import com.valyaev.lex.mysilverrain.model.UrlObject
-import kotlinx.android.synthetic.main.first_recycle_view.view.*
+import com.valyaev.lex.mysilverrain.room.ProgDB
+import kotlinx.android.synthetic.main.activity_programm.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
-    val EXTRA_URL= "URL"
-    val EXTRA_NAME= "NAME"
-    val EXTRA_ICON= "ICON"
+    val EXTRA_URL = "URL"
+    val EXTRA_NAME = "NAME"
+    val EXTRA_ICON = "ICON"
     val baseUrlObjectArray = arrayListOf<UrlObject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +26,29 @@ class MainActivity : AppCompatActivity() {
         Stetho.initializeWithDefaults(getApplicationContext())
         val assetInputStream = assets.open("urls.txt")
         val br = BufferedReader(InputStreamReader(assetInputStream))
-        val dbHelper = DbHelper(applicationContext)
+        //val dbHelper = DbHelper(applicationContext)
+        //dbHelper.readableDatabase
 
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            ProgDB::class.java, "silver.db"
+        ).createFromAsset("databases/silver.db").build()
+
+        val listProg = db.progDAO().getAllPrograms()
+        for (prog in listProg) {
+            if (prog.icon_id == null)
+                prog.icon_id = resources.getIdentifier(
+                    prog.icon_name,
+                    "drawable",
+                    applicationContext.packageName
+                )
+            db.progDAO().updateProg(prog)
+        }
+
+        /*for (prog in listProg) {
+            println("""${prog.program_name} ${prog._id}""")
+        }
         while (true)
         {
           var word = br.readLine()
@@ -46,27 +62,35 @@ class MainActivity : AppCompatActivity() {
             }
             else break
 
-        }
+        }*/
 
 
-        baseUrlObjectArray.clear()
+        /*baseUrlObjectArray.clear()
+
         baseUrlObjectArray.addAll(dbHelper.getAllPrograms())
+        print(baseUrlObjectArray)
 
-        val recyclerView :RecyclerView = findViewById(R.id.firstRecycle)
-            recyclerView.layoutManager = LinearLayoutManager(this)
+        val recyclerView: androidx.recyclerview.widget.RecyclerView =
+            findViewById(R.id.firstRecycle)
+        recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(this)
 
         val onProgrammClickListener = object : Adapter.OnProgrammClickListener {
             override fun onClick(urlObject: UrlObject) {
-                    //Toast.makeText(applicationContext , urlObject.url,Toast.LENGTH_LONG).show()
-                    val intentProgActivity = Intent(this@MainActivity,ProgrammActivity::class.java)
-                intentProgActivity.putExtra(EXTRA_URL,urlObject.url).putExtra(EXTRA_NAME,urlObject.text).putExtra(EXTRA_ICON,urlObject.iconID)
+                //Toast.makeText(applicationContext , urlObject.url,Toast.LENGTH_LONG).show()
+                val intentProgActivity = Intent(this@MainActivity, ProgrammActivity::class.java)
+                intentProgActivity.putExtra(EXTRA_URL, urlObject.url)
+                    .putExtra(EXTRA_NAME, urlObject.text).putExtra(EXTRA_ICON, urlObject.iconID)
                 startActivity(intentProgActivity)
             }
         }
 
-            recyclerView.adapter= Adapter(baseUrlObjectArray,onProgrammClickListener)
-        val itemDecoration = DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
-            recyclerView.addItemDecoration(itemDecoration)
+        recyclerView.adapter = Adapter(baseUrlObjectArray, onProgrammClickListener)
+        val itemDecoration = androidx.recyclerview.widget.DividerItemDecoration(
+            this,
+            androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+        )
+        recyclerView.addItemDecoration(itemDecoration)*/
 
 
     }

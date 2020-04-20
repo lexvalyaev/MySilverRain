@@ -3,13 +3,14 @@ package com.valyaev.lex.mysilverrain
 
 import android.graphics.drawable.Drawable
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
+import android.widget.Toast
 import com.valyaev.lex.mysilverrain.controller.ProgAdapter
 import com.valyaev.lex.mysilverrain.helper.DbHelper
 import com.valyaev.lex.mysilverrain.model.ProgUrlObject
@@ -23,7 +24,7 @@ class ProgrammActivity : AppCompatActivity() {
     val EXTRA_NAME= "NAME"
     val EXTRA_ICON= "ICON"
     val programmsList = arrayListOf<ProgUrlObject>()
-    val progAdapter = ProgAdapter(programmsList)
+
     var urlProgramm = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,18 +35,34 @@ class ProgrammActivity : AppCompatActivity() {
         val nameProgramm = intentMain.getStringExtra(EXTRA_NAME)
         val imgID = intentMain.extras.getInt(EXTRA_ICON)
 
-        val recyclerView : RecyclerView = findViewById(R.id.prog_recycle)
+        val recyclerView : androidx.recyclerview.widget.RecyclerView = findViewById(R.id.prog_recycle)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val onDowloadClickListener = object : ProgAdapter.OnDownloadClickListener{
+            override fun onClick(progUrlObject: ProgUrlObject) {
+                val text = "clik on dowload"
+                Toast.makeText(applicationContext, text,Toast.LENGTH_SHORT)
+            }
+
+        }
+
+        val progAdapter = ProgAdapter(programmsList,onDowloadClickListener)
+
+        recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.adapter=progAdapter
 
-        val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        val itemDecoration = androidx.recyclerview.widget.DividerItemDecoration(
+            this,
+            androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+        )
         recyclerView.addItemDecoration(itemDecoration)
 
         doAsync{
             getProgList(urlProgramm,programmsList,imgID)
-        }.execute()
 
+        }.execute()
+        progAdapter.setItems(programmsList)
     }
 
     inner class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
@@ -56,7 +73,6 @@ class ProgrammActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: Void?) {
             super.onPostExecute(result)
-            progAdapter.setItems(programmsList)
         }
 
 
@@ -87,11 +103,11 @@ class ProgrammActivity : AppCompatActivity() {
 
                 if (e.text() == "Загрузить еще") {
                     hasNextPage = true
-                    nextUrl = "http://www.silver.ru" + e.attr("href")
+                    nextUrl = "https://www.silver.ru" + e.attr("href")
 
                 }
                 if (e.text() != "Загрузить еще" && e.text() != "" && !(regex.matches(e.text()))) {
-                    val docHTML = Jsoup.connect("http://www.silver.ru" + e.attr("href")).get()
+                    val docHTML = Jsoup.connect("https://www.silver.ru" + e.attr("href")).get()
                     val elementBlog = docHTML.selectFirst("div.blog-detail")
                     val mp3url = elementBlog.getElementsByTag("audio").attr("src")
                     val stringData = elementBlog.getElementsByTag("span").last().text()
